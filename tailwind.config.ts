@@ -10,6 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         background: "var(--background)",
+        primary100: '#437ED9',
+        primary20: '#EAF1FB',
+        redLight: '#FFF4F4',
+        darkRed: '#611F1F',
         foreground: "var(--foreground)",
       },
     },

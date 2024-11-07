@@ -1,101 +1,60 @@
-import Image from "next/image";
+'use client';
+import { useState } from 'react';
+import BatteryCardComponent from '@/components/BatteryCardComponent';
+import Image from 'next/image';
+import SearchBar from '@/components/SearchBar';
+import SelectOption from '@/components/SelectOption';
+import Link from 'next/link';
+import Alert from "../components/Alert";
+import Card from '@/components/Card';
+import Modal from '@/components/Modal';
 
-export default function Home() {
+const BatteryPage = () => {
+
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <Card>
+      <div className="flex justify-between mx-auto text-center my-auto items-center border-b border-gray-200 pb-4">
+        <div className='flex text-center items-center'>
+          <svg className='' xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path d="M15.293 3.293 6.586 12l8.707 8.707 1.414-1.414L9.414 12l7.293-7.293-1.414-1.414z" />
+          </svg>
+          <h2 className="md:text-3xl text-2xl font-semibold leading-9 text-gray-800 ml-3">Roof Type</h2>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <Link href='/rate' className="text-white bg-primary100 rounded-lg text-base px-4 py-1 mt-2 sm:px-5 sm:py-1.5">
+          Create Adder Rate
+        </Link>
+      </div>
+
+      <div className='my-3'>
+        <div className='w-full flex flex-col xl:flex-row justify-between mb-3'>
+          {/* Search Bar */}
+          <div className='flex-1 mb-3 xl:mb-0'> {/* Ensures margin at the bottom on small screens */}
+            <SearchBar placeholder="Search Orders" className="w-full" />
+          </div>
+
+          {/* Select Options */}
+          <div className='flex '> {/* Add spacing between select options */}
+            <SelectOption title='Adder Cat' />
+            <SelectOption title='Standard' />
+            <SelectOption title='Price info' />
+            <SelectOption title='EPC Price' />
+          </div>
+        </div>
+
+        <Alert />
+
+        {/* Pass different values for standard prop */}
+
+        <BatteryCardComponent standard={false} />  {/* Second component with standard as true */}
+        <BatteryCardComponent standard={true} /> {/* First component with standard as false */}
+        <BatteryCardComponent standard={true} /> {/* First component with standard as false */}
+        <BatteryCardComponent standard={true} /> {/* First component with standard as false */}
+
+      </div>
+      
+    </Card>
   );
-}
+};
+
+export default BatteryPage;
